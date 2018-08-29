@@ -49,6 +49,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "provision-root", type: "shell", path: "provision-root.sh"
   config.vm.provision "provision-user", type: "shell", path: "provision-user.sh", privileged: false
 
-  # Install Hyperledger Composer
-  config.vm.provision "install-composer", type: "shell", path: "install-composer.sh", privileged: false, args: ENV['COMPOSER_VERSION']
+  # Install Hyperledger Fabric
+  config.vm.provision "install-fabric", type: "shell", path: "install-fabric.sh", privileged: false, args: ENV['FABRIC_VERSION']
 end

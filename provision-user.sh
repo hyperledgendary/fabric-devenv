@@ -11,9 +11,3 @@ nvm which ${DEFAULT_NODE_VERSION} >/dev/null 2>&1 || nvm install ${DEFAULT_NODE_
 
 nvm use ${DEFAULT_NODE_VERSION}
 nvm alias default ${DEFAULT_NODE_VERSION}
-
-# Install generator-fabric-composer prereqs
-npm ls -g yo >/dev/null 2>&1 || npm install -g yo
-npm ls -g typings >/dev/null 2>&1 || npm install -g typings
-npm ls -g bower >/dev/null 2>&1 || npm install -g bower
-npm ls -g @angular/cli >/dev/null 2>&1 || npm install -g @angular/cli
