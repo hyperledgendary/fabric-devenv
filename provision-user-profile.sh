@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# TBC
-
 #
 # add devenv section to .profile
 #
@@ -16,7 +14,8 @@ sed -i.bak "/$DEVENV_START_COMMENT/,/$DEVENV_END_COMMENT/d" ~/.profile
 cat << END-PROFILE-SECTION >> ~/.profile
 $DEVENV_START_COMMENT
 
-# TBC
+export GOPATH=$HOME/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 $DEVENV_END_COMMENT
 END-PROFILE-SECTION

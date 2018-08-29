@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder "go/src", "/home/vagrant/go/src", create: true
 
   # VirtualBox configuration
   config.vm.provider "virtualbox" do |vb|
@@ -45,10 +45,11 @@ Vagrant.configure("2") do |config|
     vb.memory = 6192
   end
 
-  # Install prereqs
-  config.vm.provision "provision-root", type: "shell", path: "provision-root.sh"
-  config.vm.provision "provision-user", type: "shell", path: "provision-user.sh", privileged: false
+  # Configure vagrant user .profile
+  config.vm.provision "provision-user-profile", type: "shell", path: "provision-user-profile.sh", privileged: false
+  
+  # Install required software
+  config.vm.provision "provision-root", type: "shell", path: "provision-root.sh", privileged: true, args: ENV['HLF_VERSION']
+  config.vm.provision "provision-user", type: "shell", path: "provision-user.sh", privileged: false, args: ENV['HLF_VERSION']
 
-  # Install Hyperledger Fabric
-  config.vm.provision "install-fabric", type: "shell", path: "install-fabric.sh", privileged: false, args: ENV['FABRIC_VERSION']
 end
