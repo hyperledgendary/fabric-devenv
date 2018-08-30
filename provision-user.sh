@@ -21,16 +21,23 @@ nvm which ${DEFAULT_NODE_VERSION} >/dev/null 2>&1 || nvm install ${DEFAULT_NODE_
 nvm use ${DEFAULT_NODE_VERSION}
 nvm alias default ${DEFAULT_NODE_VERSION}
 
+# Install Hyperledger Fabric samples, binaries and docker images
+if [ ! -d "$HOME/fabric" ]; then
+  mkdir -p "$HOME/fabric"
+  pushd "$HOME/fabric"
+  curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh | bash -s $HLF_VERSION
+  popd
+fi
+
 # Set up Go workspace
 if [ ! -d "$HOME/go/src" ]; then
   mkdir -p "$HOME/go/src"
 fi
 
-# Download Hyperledger Fabric
+# Clone Hyperledger Fabric into Go workspace
 if [ ! -d "$HOME/go/src/github.com/hyperledger/fabric" ]; then
-  curl --silent --show-error -L "https://github.com/hyperledger/fabric/archive/v${HLF_VERSION}.tar.gz" -o "/tmp/v${HLF_VERSION}.tar.gz"
   mkdir -p "$HOME/go/src/github.com/hyperledger"
-  tar -C "$HOME/go/src/github.com/hyperledger" -xzf "/tmp/v${HLF_VERSION}.tar.gz"
-  mv "$HOME/go/src/github.com/hyperledger/fabric-${HLF_VERSION}" "$HOME/go/src/github.com/hyperledger/fabric"
-  rm "/tmp/v${HLF_VERSION}.tar.gz"
+  pushd "$HOME/go/src/github.com/hyperledger"
+  git clone --branch v${HLF_VERSION} --depth 1 https://github.com/hyperledger/fabric.git
+  popd
 fi

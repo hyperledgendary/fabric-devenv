@@ -15,7 +15,7 @@ cat << END-PROFILE-SECTION >> ~/.profile
 $DEVENV_START_COMMENT
 
 export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export PATH=$PATH:$HOME/fabric/fabric-samples/bin:/usr/local/go/bin:$GOPATH/bin
 
 $DEVENV_END_COMMENT
 END-PROFILE-SECTION
