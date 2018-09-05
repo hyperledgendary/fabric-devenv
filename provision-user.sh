@@ -25,7 +25,7 @@ nvm alias default ${DEFAULT_NODE_VERSION}
 if [ ! -d "$HOME/fabric" ]; then
   mkdir -p "$HOME/fabric"
   pushd "$HOME/fabric"
-  curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh | bash -s $HLF_VERSION
+  curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh | sg docker bash -s $HLF_VERSION
   popd
 fi
 
