@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 
 if [ -z $1 ]; then
-  HLF_VERSION=1.2.0
+  HLF_VERSION=1.3.0
 else
   HLF_VERSION=$1
 fi

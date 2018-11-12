@@ -14,7 +14,7 @@ You'll need to stock your machine with all these healthy ingredients if you don'
 
 ## Method
 
-To configure a development environment for Hyperledger Fabric (TBC), run the following commands:
+To configure a development environment for Hyperledger Fabric 1.3, run the following commands:
 
 ```
 git clone https://github.com/jt-nti/fabric-devenv.git
@@ -36,22 +36,22 @@ Now that you have a working development environment, why not... cook up some sma
 
 To install specific versions of Fabric, set a `FABRIC_VERSION` environment variable before running `vagrant up`. 
 
-For example... TBC:
+For example, to install the previous version of Fabric use:
 
 ```
-FABRIC_VERSION=???? vagrant up
+FABRIC_VERSION=1.2 vagrant up
 ```
 
 Or on Windows:
 
 ```
-set FABRIC_VERSION=????
+set FABRIC_VERSION=1.2
 vagrant up
 ```
 
 Supported `FABRIC_VERSION` values:
 
-- TBC
+- Specific `1.2` or `1.3` version numbers
 
 ## Cooking tips
 
