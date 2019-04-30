@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 
 if [ -z $1 ]; then
-  HLF_VERSION=1.3.0
+  HLF_VERSION=1.4.1
 else
   HLF_VERSION=$1
 fi
@@ -25,7 +25,7 @@ nvm alias default ${DEFAULT_NODE_VERSION}
 if [ ! -d "$HOME/fabric" ]; then
   mkdir -p "$HOME/fabric"
   pushd "$HOME/fabric"
-  curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh | sg docker bash -s $HLF_VERSION
+  sg docker "curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh | bash -s -- $HLF_VERSION -s"
   popd
 fi
 
