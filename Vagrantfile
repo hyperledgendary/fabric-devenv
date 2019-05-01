@@ -23,10 +23,12 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 3000, host: 3000, auto_correct: true
   config.vm.network "forwarded_port", guest: 4200, host: 4200, auto_correct: true
   config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
-  config.vm.network "forwarded_port", guest: 7050, host: 7050, auto_correct: true
-  config.vm.network "forwarded_port", guest: 7051, host: 7051, auto_correct: true
-  config.vm.network "forwarded_port", guest: 7053, host: 7053, auto_correct: true
-  config.vm.network "forwarded_port", guest: 7054, host: 7054, auto_correct: true
+  config.vm.network "forwarded_port", guest: 17050, host: 17050, auto_correct: true
+  config.vm.network "forwarded_port", guest: 17051, host: 17051, auto_correct: true
+  config.vm.network "forwarded_port", guest: 17052, host: 17052, auto_correct: true
+  config.vm.network "forwarded_port", guest: 17054, host: 17054, auto_correct: true
+  config.vm.network "forwarded_port", guest: 17055, host: 17055, auto_correct: true
+  config.vm.network "forwarded_port", guest: 17056, host: 17056, auto_correct: true
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -37,7 +39,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "go/src", "/home/vagrant/go/src", create: true
+  #config.vm.synced_folder "go/src", "/home/vagrant/go/src", create: true
 
   # VirtualBox configuration
   config.vm.provider "virtualbox" do |vb|

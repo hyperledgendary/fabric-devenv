@@ -4,18 +4,18 @@ set -o errexit
 set -o pipefail
 
 if [ -z $1 ]; then
-  HLF_VERSION=1.2.0
+  HLF_VERSION=1.4.1
 else
   HLF_VERSION=$1
 fi
 
-if [ ${HLF_VERSION:0:4} = '1.2.' ]; then
+if [ ${HLF_VERSION:0:4} = '1.2.' -o ${HLF_VERSION:0:4} = '1.3.' -o ${HLF_VERSION:0:4} = '1.4.' ]; then
   export GO_VERSION=1.10.4
 elif [ ${HLF_VERSION:0:4} = '1.1.' ]; then
   export GO_VERSION=1.9.7
 else
   >&2 echo "Unexpected HLF_VERSION ${HLF_VERSION}"
-  >&2 echo "HLF_VERSION must be a 1.1.x, or 1.2.x version"
+  >&2 echo "HLF_VERSION must be a 1.1.x, 1.2.x, 1.3.x, or 1.4.x version"
   exit 1
 fi
 
