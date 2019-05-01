@@ -34,22 +34,22 @@ Now that you have a working development environment, why not try the [Commercial
 
 ## Alternative toppings
 
-To install specific versions of Fabric, set a `FABRIC_VERSION` environment variable before running `vagrant up`. 
+To install specific versions of Fabric, set a `HLF_VERSION` environment variable before running `vagrant up`. 
 
 For example, to install the previous version of Fabric use:
 
 ```
-FABRIC_VERSION=1.2 vagrant up
+HLF_VERSION=1.2 vagrant up
 ```
 
 Or on Windows:
 
 ```
-set FABRIC_VERSION=1.2
+set HLF_VERSION=1.2
 vagrant up
 ```
 
-Supported `FABRIC_VERSION` values:
+Supported `HLF_VERSION` values:
 
 - Specific `1.2`, `1.3`, or `1.4` version numbers
 
