@@ -14,8 +14,8 @@ sed -i.bak "/$DEVENV_START_COMMENT/,/$DEVENV_END_COMMENT/d" ~/.profile
 cat << END-PROFILE-SECTION >> ~/.profile
 $DEVENV_START_COMMENT
 
-export GOPATH=$HOME/go
-export PATH=$PATH:$HOME/fabric/fabric-samples/bin:/usr/local/go/bin:$GOPATH/bin
+export GOPATH=\$HOME/go
+export PATH=\$PATH:\$HOME/fabric/bin:/usr/local/go/bin:\$GOPATH/bin
 
 $DEVENV_END_COMMENT
 END-PROFILE-SECTION

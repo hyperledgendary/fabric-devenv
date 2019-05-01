@@ -30,7 +30,7 @@ vagrant ssh
 
 ## Serving suggestion
 
-Now that you have a working development environment, why not... cook up some smart contracts (TBC)!
+Now that you have a working development environment, why not try the [Commercial paper tutorial](https://hyperledger-fabric.readthedocs.io/en/latest/tutorial/commercial_paper.html)?
 
 ## Alternative toppings
 
