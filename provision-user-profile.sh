@@ -17,5 +17,7 @@ $DEVENV_START_COMMENT
 export GOPATH=\$HOME/go
 export PATH=\$PATH:\$HOME/fabric/bin:/usr/local/go/bin:\$GOPATH/bin
 
+export FABRIC_CFG_PATH=\$HOME/fabric/config
+
 $DEVENV_END_COMMENT
 END-PROFILE-SECTION

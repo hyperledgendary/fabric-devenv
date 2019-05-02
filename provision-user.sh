@@ -65,6 +65,6 @@ fi
 if [ ! -d "$HOME/test-network" ]; then
   mkdir -p "$HOME/test-network"
   pushd "$HOME/test-network"
-  yo fabric:network -- --name test-network --dockerName testnetwork --orderer 17050 --peerRequest 17051 --peerChaincode 17052 --certificateAuthority 17054 --couchDB 17055 --logspout 17056
+  yo fabric:network -- --name test-network --dockerName testnetwork --orderer 7050 --peerRequest 7051 --peerChaincode 7052 --certificateAuthority 7054 --couchDB 7055 --logspout 7056
   popd
 fi
