@@ -14,8 +14,10 @@ THIRDPARTY_IMAGE_VERSION=0.4.15
 
 if [ ${HLF_VERSION:0:4} = '2.0.' ]; then
   SAMPLE_BRANCH=master
+  NODE_VERSION=10.15.3
 else
   SAMPLE_BRANCH=v${HLF_VERSION}
+  NODE_VERSION=8.9.0
 fi
 
 # Install NVM
@@ -24,11 +26,10 @@ export NVM_DIR="$HOME/.nvm"
 . "$NVM_DIR/nvm.sh"
 
 # Install node and npm
-DEFAULT_NODE_VERSION=8.9.0
-nvm which ${DEFAULT_NODE_VERSION} >/dev/null 2>&1 || nvm install ${DEFAULT_NODE_VERSION}
+nvm which ${NODE_VERSION} >/dev/null 2>&1 || nvm install ${NODE_VERSION}
 
-nvm use ${DEFAULT_NODE_VERSION}
-nvm alias default ${DEFAULT_NODE_VERSION}
+nvm use ${NODE_VERSION}
+nvm alias default ${NODE_VERSION}
 echo "default" > $HOME/.nvmrc
 
 # Install a few useful node modules
