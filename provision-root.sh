@@ -31,8 +31,11 @@ apt-get update
 # Install jq (nice to have when there's JSON everywhere!)
 apt-get -y --no-upgrade install jq
 
-# Install unzip (useful for .card files)
+# Install unzip
 apt-get -y --no-upgrade install unzip
+
+# Install java
+apt-get -y --no-upgrade install default-jdk
 
 # Install python 2 (required for node-gyp)
 apt-get -y --no-upgrade install python-minimal
