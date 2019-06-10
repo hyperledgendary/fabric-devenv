@@ -68,3 +68,31 @@ if [ ! -d /usr/local/go ]; then
   tar -C /usr/local -xzf "/tmp/go${GO_VERSION}.linux-amd64.tar.gz"
   rm "/tmp/go${GO_VERSION}.linux-amd64.tar.gz"
 fi
+
+# Install maven
+MAVEN_VERSION=3.6.1
+if [ ! -d /opt/apache-maven-${MAVEN_VERSION} ]; then
+  curl --silent --show-error -L "https://www-eu.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" -o "/tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+  tar -C /opt -xzf "/tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+  rm "/tmp/apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+  cat \
+<< END-MAVEN-SH > /etc/profile.d/maven.sh
+export MAVEN_HOME=/opt/apache-maven-${MAVEN_VERSION}
+export PATH=\$PATH:\$MAVEN_HOME/bin
+END-MAVEN-SH
+  chmod +x /etc/profile.d/maven.sh
+fi
+
+# Install gradle
+GRADLE_VERSION=5.4.1
+if [ ! -d /opt/gradle-${GRADLE_VERSION} ]; then
+  curl --silent --show-error -L "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" -o "/tmp/gradle-${GRADLE_VERSION}-bin.zip"
+  unzip -d /opt /tmp/gradle-${GRADLE_VERSION}-bin.zip
+  rm "/tmp/gradle-${GRADLE_VERSION}-bin.zip"
+  cat \
+<< END-GRADLE-SH > /etc/profile.d/gradle.sh
+export GRADLE_HOME=/opt/gradle-${GRADLE_VERSION}
+export PATH=\$PATH:\$GRADLE_HOME/bin
+END-GRADLE-SH
+  chmod +x /etc/profile.d/gradle.sh
+fi
