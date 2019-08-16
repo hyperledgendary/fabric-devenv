@@ -96,3 +96,14 @@ export PATH=\$PATH:\$GRADLE_HOME/bin
 END-GRADLE-SH
   chmod +x /etc/profile.d/gradle.sh
 fi
+
+# Install protoc
+PROTOC_VERSION=3.9.1
+if [ ! -x "/usr/local/bin/protoc" ]; then
+  curl --silent --show-error -L "https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/protoc-${PROTOC_VERSION}-linux-x86_64.zip" -o "/tmp/protoc-${PROTOC_VERSION}-linux-x86_64.zip"
+  unzip "/tmp/protoc-${PROTOC_VERSION}-linux-x86_64.zip" -d "/tmp/protoc-${PROTOC_VERSION}-linux-x86_64"
+  rm "/tmp/protoc-${PROTOC_VERSION}-linux-x86_64.zip"
+  mv /tmp/protoc-${PROTOC_VERSION}-linux-x86_64/bin/* /usr/local/bin/
+  mv /tmp/protoc-${PROTOC_VERSION}-linux-x86_64/include/* /usr/local/include/
+  rm -Rf "/tmp/protoc-${PROTOC_VERSION}-linux-x86_64"
+fi
