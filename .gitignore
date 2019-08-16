@@ -11,3 +11,5 @@
 *.tgz
 
 /go
+
+/repos

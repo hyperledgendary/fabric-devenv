@@ -43,6 +43,9 @@ apt-get -y --no-upgrade install python-minimal
 # Install Git
 apt-get -y --no-upgrade install git
 
+# Install protoc dependencies
+apt-get -y --no-upgrade install autoconf automake libtool curl make g++ unzip
+
 # Install nvm dependencies
 apt-get -y --no-upgrade install build-essential libssl-dev
 
@@ -95,4 +98,20 @@ export GRADLE_HOME=/opt/gradle-${GRADLE_VERSION}
 export PATH=\$PATH:\$GRADLE_HOME/bin
 END-GRADLE-SH
   chmod +x /etc/profile.d/gradle.sh
+fi
+
+# Install protoc (might be quicker to download a precompiled version!)
+PROTOC_VERSION=3.9.1
+if [ ! -x "/usr/local/bin/protoc" ]; then
+  curl --silent --show-error -L "https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC_VERSION}/protobuf-all-${PROTOC_VERSION}.tar.gz" -o "/tmp/protobuf-all-${PROTOC_VERSION}.tar.gz"
+  tar -C /tmp -xzf "/tmp/protobuf-all-${PROTOC_VERSION}.tar.gz"
+  rm "/tmp/protobuf-all-${PROTOC_VERSION}.tar.gz"
+  pushd "/tmp/protobuf-${PROTOC_VERSION}"
+  ./configure
+  make
+  make check
+  sudo make install
+  sudo ldconfig
+  popd
+  rm -Rf "/tmp/protobuf-${PROTOC_VERSION}"
 fi
