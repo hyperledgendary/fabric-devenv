@@ -22,7 +22,7 @@ fi
 
 # Install NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] || curl --silent --show-error -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.3/install.sh | bash
+[ -s "$NVM_DIR/nvm.sh" ] || curl --fail --silent --show-error -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.3/install.sh | bash
 . "$NVM_DIR/nvm.sh"
 
 # Install node and npm
