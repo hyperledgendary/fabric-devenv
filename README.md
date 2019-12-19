@@ -36,22 +36,22 @@ Now that you have a working development environment, why not try the [Commercial
 
 To install specific versions of Fabric, set a `HLF_VERSION` environment variable before running `vagrant up`. 
 
-For example, to install the previous version of Fabric use:
+For example, to install the version 2.0 beta of Fabric use:
 
 ```
-HLF_VERSION=1.2 vagrant up
+HLF_VERSION=2.0.0-beta vagrant up
 ```
 
 Or on Windows:
 
 ```
-set HLF_VERSION=1.2
+set HLF_VERSION=2.0.0-beta
 vagrant up
 ```
 
 Supported `HLF_VERSION` values:
 
-- Specific `1.2`, `1.3`, or `1.4` version numbers
+- Specific `1.2`, `1.3`, `1.4`, or `2.0.0-beta` version numbers
 
 ## Cooking tips
 
@@ -67,6 +67,6 @@ Or simply copy an existing clone. The different directory names should show up i
 
 ### Clearing up
 
-When you've finished with a development environment you can suspend it using `vagrant suspend` and resume later using `vagrant up`
+When you've finished with a development environment you can suspend it using `vagrant suspend` and resume later using `vagrant up`.
 
 Alternatively, if you've finished with Fabric or want to start again, `vagrant destroy` will completely remove the virtual machine.

@@ -4,18 +4,19 @@ set -o errexit
 set -o pipefail
 
 if [ -z $1 ]; then
-  HLF_VERSION=1.4.1
+  HLF_VERSION=1.4.4
 else
   HLF_VERSION=$1
 fi
 
-CA_VERSION=$HLF_VERSION
 THIRDPARTY_IMAGE_VERSION=0.4.15
 
 if [ ${HLF_VERSION:0:4} = '2.0.' ]; then
+  CA_VERSION=2.0.0-alpha # There is no beta version
   SAMPLE_BRANCH=master
-  NODE_VERSION=10.15.3
+  NODE_VERSION=12.14.0
 else
+  CA_VERSION=$HLF_VERSION
   SAMPLE_BRANCH=v${HLF_VERSION}
   NODE_VERSION=8.9.0
 fi
@@ -35,14 +36,10 @@ echo "default" > $HOME/.nvmrc
 # Install a few useful node modules
 npm ls -g yo >/dev/null 2>&1 || npm install -g yo
 npm ls -g generator-fabric >/dev/null 2>&1 || npm install -g generator-fabric
-npm ls -g hlf-cli >/dev/null 2>&1 || npm install -g hlf-cli
 
 # Install Hyperledger Fabric binaries and docker images
 if [ ! -d "$HOME/fabric" ]; then
-  mkdir -p "$HOME/fabric"
-  pushd "$HOME/fabric"
-  sg docker "curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/be235fd3a236f792a525353d9f9586c8b0d4a61a/scripts/bootstrap.sh | bash -s -- $HLF_VERSION $CA_VERSION $THIRDPARTY_IMAGE_VERSION -s"
-  popd
+  sg docker "curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh | bash -s -- $HLF_VERSION $CA_VERSION $THIRDPARTY_IMAGE_VERSION"
 fi
 
 # Set up Go workspace
@@ -58,17 +55,10 @@ if [ ! -d "$HOME/go/src/github.com/hyperledger/fabric" ]; then
   popd
 fi
 
-# Clone Hyperledger Fabric Samples into Go workspace
-if [ ! -d "$HOME/go/src/github.com/hyperledger/fabric-samples" ]; then
-  mkdir -p "$HOME/go/src/github.com/hyperledger"
-  pushd "$HOME/go/src/github.com/hyperledger"
-  git clone --branch ${SAMPLE_BRANCH} --depth 1 https://github.com/hyperledger/fabric-samples.git
-  popd
-fi
-
-# Add symlink to Fabric Samples
+# Add symlink to Fabric Samples in Go workspace
 if [ ! -h "$HOME/fabric-samples" ]; then
-  ln -s "$HOME/go/src/github.com/hyperledger/fabric-samples" "$HOME/fabric-samples"
+  mkdir -p "$HOME/go/src/github.com/hyperledger"
+  ln -s "$HOME/fabric-samples" "$HOME/go/src/github.com/hyperledger/fabric-samples"
 fi
 
 # Create a test network for Hyperledger Fabric
