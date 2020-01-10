@@ -12,7 +12,7 @@ fi
 THIRDPARTY_IMAGE_VERSION=0.4.15
 
 if [ ${HLF_VERSION:0:4} = '2.0.' ]; then
-  CA_VERSION=2.0.0-alpha # There is no beta version
+  CA_VERSION=1.4.4
   SAMPLE_BRANCH=master
   NODE_VERSION=12.14.0
 else
