@@ -9,7 +9,9 @@ else
   HLF_VERSION=$1
 fi
 
-if [ ${HLF_VERSION:0:4} = '1.2.' -o ${HLF_VERSION:0:4} = '1.3.' -o ${HLF_VERSION:0:4} = '1.4.' -o ${HLF_VERSION:0:4} = '2.0.' ]; then
+if [ ${HLF_VERSION:0:4} = '2.0.' ]; then
+  export GO_VERSION=1.13.6
+elif [ ${HLF_VERSION:0:4} = '1.2.' -o ${HLF_VERSION:0:4} = '1.3.' -o ${HLF_VERSION:0:4} = '1.4.' ]; then
   export GO_VERSION=1.10.4
 elif [ ${HLF_VERSION:0:4} = '1.1.' ]; then
   export GO_VERSION=1.9.7
@@ -63,7 +65,6 @@ fi
 
 # Install go
 if [ ! -d /usr/local/go ]; then
-  GO_VERSION=1.10.4
   curl --fail --silent --show-error -L "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz" -o "/tmp/go${GO_VERSION}.linux-amd64.tar.gz"
   tar -C /usr/local -xzf "/tmp/go${GO_VERSION}.linux-amd64.tar.gz"
   rm "/tmp/go${GO_VERSION}.linux-amd64.tar.gz"
