@@ -30,7 +30,15 @@ vagrant ssh
 
 ## Serving suggestion
 
-Now that you have a working development environment, why not try the [Commercial paper tutorial](https://hyperledger-fabric.readthedocs.io/en/latest/tutorial/commercial_paper.html)?
+Now that you have a working development environment, the VSCode [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) capability is a great way to use it.
+
+After installing the extension, use the 'Remote-SSH: Connect to Host...' VSCode command to connect to the development environment.
+
+**Note:** You'll need to pick `Configure SSH Hosts...` the first time to add a host for the development environment to your SSH configuration file. To get the required SSH configuration, run:
+
+```
+vagrant ssh-config
+```
 
 ## Alternative toppings
 
