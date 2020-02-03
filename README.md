@@ -14,7 +14,7 @@ You'll need to stock your machine with all these healthy ingredients if you don'
 
 ## Method
 
-To configure a development environment for Hyperledger Fabric 1.4.1, run the following commands:
+To configure a development environment for Hyperledger Fabric 2.0.0, run the following commands:
 
 ```
 git clone https://github.com/jt-nti/fabric-devenv.git
@@ -44,22 +44,22 @@ vagrant ssh-config
 
 To install specific versions of Fabric, set a `HLF_VERSION` environment variable before running `vagrant up`. 
 
-For example, to install the version 2.0 beta of Fabric use:
+For example, to install the 1.4.4 version of Fabric use:
 
 ```
-HLF_VERSION=2.0.0-beta vagrant up
+HLF_VERSION=1.4.4 vagrant up
 ```
 
 Or on Windows:
 
 ```
-set HLF_VERSION=2.0.0-beta
+set HLF_VERSION=1.4.4
 vagrant up
 ```
 
 Supported `HLF_VERSION` values:
 
-- Specific `1.2`, `1.3`, `1.4`, or `2.0.0-beta` version numbers
+- Specific `1.2`, `1.3`, `1.4`, or `2.0` version numbers
 
 ## Cooking tips
 
