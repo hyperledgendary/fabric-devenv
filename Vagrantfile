@@ -16,8 +16,8 @@ Vagrant.configure("2") do |config|
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
-  # Set up the quickstart environment on 16.04 LTS Ubuntu
-  config.vm.box = "ubuntu/xenial64"
+  # Set up the quickstart environment on 18.04 LTS Ubuntu
+  config.vm.box = "ubuntu/bionic64"
 
   # Port forwarding
   config.vm.network "forwarded_port", guest: 3000, host: 3000, auto_correct: true
