@@ -33,7 +33,7 @@ nvm use ${NODE_VERSION}
 nvm alias default ${NODE_VERSION}
 echo "default" > $HOME/.nvmrc
 
-# Install a few useful node modules
+# Install useful node modules
 npm ls -g yo >/dev/null 2>&1 || npm install -g yo
 npm ls -g generator-fabric >/dev/null 2>&1 || npm install -g generator-fabric
 
@@ -59,12 +59,4 @@ fi
 if [ ! -h "$HOME/fabric-samples" ]; then
   mkdir -p "$HOME/go/src/github.com/hyperledger"
   ln -s "$HOME/fabric-samples" "$HOME/go/src/github.com/hyperledger/fabric-samples"
-fi
-
-# Create a test network for Hyperledger Fabric
-if [ ! -d "$HOME/test-network" ]; then
-  mkdir -p "$HOME/test-network"
-  pushd "$HOME/test-network"
-  yo fabric:network -- --name test-network --dockerName testnetwork --orderer 7050 --peerRequest 7051 --peerChaincode 7052 --certificateAuthority 7054 --couchDB 7055 --logspout 7056
-  popd
 fi
