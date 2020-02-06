@@ -39,8 +39,11 @@ apt-get -y --no-upgrade install unzip
 # Install java
 apt-get -y --no-upgrade install default-jdk
 
-# Install python 2 (required for node-gyp)
-apt-get -y --no-upgrade install python-minimal
+# Install python 3.8
+apt-get -y --no-upgrade install python3.8-minimal python3.8-venv python3.8-dev python3-pip
+
+# Install sponge
+apt-get -y --no-upgrade install moreutils
 
 # Install Git
 apt-get -y --no-upgrade install git
