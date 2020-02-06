@@ -60,3 +60,12 @@ if [ ! -h "$HOME/fabric-samples" ]; then
   mkdir -p "$HOME/go/src/github.com/hyperledger"
   ln -s "$HOME/fabric-samples" "$HOME/go/src/github.com/hyperledger/fabric-samples"
 fi
+
+# Add python virtual environment for ansible
+if [ ! -h "$HOME/ansible-venv" ]; then
+  python3.8 -m venv ansible-venv
+  source $HOME/ansible-venv/bin/activate
+  pip install wheel
+  pip install ansible
+  pip install docker
+fi
