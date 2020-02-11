@@ -45,7 +45,17 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     # Increase memory allocated to vm (for build tasks)
     vb.memory = 6192
+
+    # Add disk space
+    disk = File.join(File.realpath(File.expand_path(__dir__)), "fabric-devenv-disk.vmdk").to_s
+    if not File.exists?(disk)
+      vb.customize [ "createmedium", "disk", "--filename", disk, "--format", "vmdk", "--size", 1024 * 20 ]
+      vb.customize ["storageattach", :id,  "--storagectl", "SCSI", "--port", 2, "--device", 0, "--type", "hdd", "--medium", disk]
+    end
   end
+
+  # Configure additional disk space
+  config.vm.provision "provision-disk", type: "shell", path: "provision-disk.sh", privileged: true
 
   # Configure vagrant user .profile
   config.vm.provision "provision-user-profile", type: "shell", path: "provision-user-profile.sh", privileged: false
