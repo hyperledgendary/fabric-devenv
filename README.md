@@ -10,7 +10,9 @@ You'll need to stock your machine with all these healthy ingredients if you don'
 1. [VirtualBox](https://www.virtualbox.org/)
 2. [Vagrant](https://www.vagrantup.com/docs/installation/)
     - **Note:** fabric-devenv requires Vagrant 2.0.3 or greater
-3. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+3. [Vagrant cachier plugin](http://fgrehm.viewdocs.io/vagrant-cachier/)
+    - **Optional:** caches packages to speed up re-provisioning
+4. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## Method
 
