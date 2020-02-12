@@ -19,6 +19,11 @@ Vagrant.configure("2") do |config|
   # Set up the quickstart environment on 18.04 LTS Ubuntu
   config.vm.box = "ubuntu/bionic64"
 
+  # Optionally cache packages
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+  end
+
   # Port forwarding
   config.vm.network "forwarded_port", guest: 3000, host: 3000, auto_correct: true
   config.vm.network "forwarded_port", guest: 4200, host: 4200, auto_correct: true
@@ -29,6 +34,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 7054, host: 7054, auto_correct: true
   config.vm.network "forwarded_port", guest: 7055, host: 7055, auto_correct: true
   config.vm.network "forwarded_port", guest: 7056, host: 7056, auto_correct: true
+  config.vm.network "forwarded_port", guest: 9051, host: 9051, auto_correct: true
+  config.vm.network "forwarded_port", guest: 9052, host: 9052, auto_correct: true
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
