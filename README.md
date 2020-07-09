@@ -16,7 +16,7 @@ You'll need to stock your machine with all these healthy ingredients if you don'
 
 ## Method
 
-To configure a development environment for Hyperledger Fabric 2.0.0, run the following commands:
+To configure a development environment for Hyperledger Fabric 2.2.0, run the following commands:
 
 ```
 git clone https://github.com/jt-nti/fabric-devenv.git
@@ -61,7 +61,7 @@ vagrant up
 
 Supported `HLF_VERSION` values:
 
-- Specific `1.2`, `1.3`, `1.4`, or `2.0` version numbers
+- Specific `1.2`, `1.3`, `1.4`, `2.0`, `2.1`, or `2.2` version numbers
 
 ## Cooking tips
 
