@@ -4,14 +4,14 @@ set -o errexit
 set -o pipefail
 
 if [ -z $1 ]; then
-  HLF_VERSION=2.0.0
+  HLF_VERSION=2.2.0
 else
   HLF_VERSION=$1
 fi
 
 THIRDPARTY_IMAGE_VERSION=0.4.15
 
-if [ ${HLF_VERSION:0:4} = '2.0.' ]; then
+if [ ${HLF_VERSION:0:2} = '2.' ]; then
   CA_VERSION=1.4.4
   SAMPLE_BRANCH=master
   NODE_VERSION=12.14.0
