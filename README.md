@@ -10,9 +10,7 @@ You'll need to stock your machine with all these healthy ingredients if you don'
 1. [VirtualBox](https://www.virtualbox.org/)
 2. [Vagrant](https://www.vagrantup.com/docs/installation/)
     - **Note:** fabric-devenv requires Vagrant 2.0.3 or greater
-3. [Vagrant cachier plugin](http://fgrehm.viewdocs.io/vagrant-cachier/)
-    - **Optional:** caches packages to speed up re-provisioning
-4. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+3. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## Method
 
@@ -46,22 +44,22 @@ vagrant ssh-config
 
 To install specific versions of Fabric, set a `HLF_VERSION` environment variable before running `vagrant up`. 
 
-For example, to install the 1.4.4 version of Fabric use:
+For example, to install the 2.3.0 version of Fabric use:
 
 ```
-HLF_VERSION=1.4.4 vagrant up
+HLF_VERSION=2.3.0 vagrant up
 ```
 
 Or on Windows:
 
 ```
-set HLF_VERSION=1.4.4
+set HLF_VERSION=2.3.0
 vagrant up
 ```
 
 Supported `HLF_VERSION` values:
 
-- Specific `1.2`, `1.3`, `1.4`, `2.0`, `2.1`, or `2.2` version numbers
+- Specific `1.2`, `1.3`, `1.4`, `2.0`, `2.1`, `2.2`, or `2.3` version numbers
 
 ## Cooking tips
 
@@ -80,3 +78,7 @@ Or simply copy an existing clone. The different directory names should show up i
 When you've finished with a development environment you can suspend it using `vagrant suspend` and resume later using `vagrant up`.
 
 Alternatively, if you've finished with Fabric or want to start again, `vagrant destroy` will completely remove the virtual machine.
+
+### Known problems
+
+The [Vagrant cachier plugin](http://fgrehm.viewdocs.io/vagrant-cachier/) appears to cause problems with the latest version of Vagrant.
