@@ -20,5 +20,6 @@ if ! grep -Fxq "/dev/vagrant/home /home ext4 defaults 0 0" /etc/fstab; then
   # Mount the new volumes
   echo '/dev/vagrant/opt /opt ext4 defaults 0 0' >> /etc/fstab
   echo '/dev/vagrant/home /home ext4 defaults 0 0' >> /etc/fstab
-  mount -a
+  mount --target /opt
+  mount --target /home
 fi
