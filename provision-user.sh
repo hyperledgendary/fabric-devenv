@@ -56,7 +56,7 @@ if [ ! -d "$HOME/go/src/github.com/hyperledger/fabric" ]; then
 fi
 
 # Add symlink to Fabric Samples in Go workspace
-if [ ! -h "$HOME/fabric-samples" ]; then
+if [ ! -h "$HOME/go/src/github.com/hyperledger/fabric-samples" ]; then
   mkdir -p "$HOME/go/src/github.com/hyperledger"
   ln -s "$HOME/fabric-samples" "$HOME/go/src/github.com/hyperledger/fabric-samples"
 fi
