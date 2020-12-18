@@ -73,11 +73,30 @@ git clone https://github.com/jt-nti/fabric-devenv.git fabric-tutorial
 
 Or simply copy an existing clone. The different directory names should show up in the VirtualBox UI after running `vagrant up` if you need to update the VM settings for any of your environments.
 
+### Larger portions
+
+The development environment has an extra 20GB disk on top of the normal storage.
+The _opt_ and _home_ directories have 5GB each, leaving another 10GB if you run out of storage.
+
+The following commands will show disk usage and volume group information respectively:
+
+```
+df
+sudo vgdisplay -v
+```
+
+For example, if they show that the home directory is full and there is still enough unallocated space, you can increase the size using these commands:
+
+```
+sudo lvextend -L +5G /dev/vagrant/home
+sudo resize2fs /dev/vagrant/home
+```
+
 ### Clearing up
 
 When you've finished with a development environment you can suspend it using `vagrant suspend` and resume later using `vagrant up`.
 
-Alternatively, if you've finished with Fabric or want to start again, `vagrant destroy` will completely remove the virtual machine.
+Alternatively, if you've finished with Fabric or want to start again, `vagrant destroy` will completely remove the virtual machine and the extra disk.
 
 ### Known problems
 
