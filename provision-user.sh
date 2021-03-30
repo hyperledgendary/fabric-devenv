@@ -13,7 +13,7 @@ THIRDPARTY_IMAGE_VERSION=0.4.15
 
 if [ ${HLF_VERSION:0:2} = '2.' ]; then
   CA_VERSION=1.4.4
-  SAMPLE_BRANCH=master
+  SAMPLE_BRANCH=main
   NODE_VERSION=12.14.0
 else
   CA_VERSION=$HLF_VERSION
@@ -65,7 +65,12 @@ fi
 if [ ! -h "$HOME/ansible-venv" ]; then
   python3.8 -m venv ansible-venv
   source $HOME/ansible-venv/bin/activate
+  pip install --upgrade pip
   pip install wheel
   pip install ansible
   pip install docker
+  pip install -U fabric-sdk-py
+  pip install -U 'openshift==0.11.2'
+  pip install -U semantic_version
+  ansible-galaxy collection install ibm.blockchain_platform
 fi
