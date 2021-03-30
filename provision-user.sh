@@ -39,7 +39,7 @@ npm ls -g generator-fabric >/dev/null 2>&1 || npm install -g generator-fabric
 
 # Install Hyperledger Fabric binaries and docker images
 if [ ! -d "$HOME/fabric" ]; then
-  sg docker "curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/master/scripts/bootstrap.sh | bash -s -- $HLF_VERSION $CA_VERSION $THIRDPARTY_IMAGE_VERSION"
+  sg docker "curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/bootstrap.sh | bash -s -- $HLF_VERSION $CA_VERSION $THIRDPARTY_IMAGE_VERSION"
 fi
 
 # Set up Go workspace
