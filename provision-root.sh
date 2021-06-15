@@ -24,8 +24,7 @@ else
 fi
 
 # APT setup for docker packages
-# gpg keys listed at https://github.com/nodejs/node#release-team
-apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 apt-cache policy docker-ce
 
