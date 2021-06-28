@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com.
 
   # Set up the quickstart environment on 18.04 LTS Ubuntu
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "bento/ubuntu-18.04"
 
   # Optionally cache packages
   if Vagrant.has_plugin?("vagrant-cachier")
@@ -57,7 +57,7 @@ Vagrant.configure("2") do |config|
     disk = File.join(File.realpath(File.expand_path(__dir__)), "fabric-devenv-disk.vmdk").to_s
     if not File.exists?(disk)
       vb.customize [ "createmedium", "disk", "--filename", disk, "--format", "vmdk", "--size", 1024 * 20 ]
-      vb.customize ["storageattach", :id,  "--storagectl", "SCSI", "--port", 2, "--device", 0, "--type", "hdd", "--medium", disk]
+      vb.customize ["storageattach", :id,  "--storagectl", "SATA Controller", "--port", 1, "--device", 0, "--type", "hdd", "--medium", disk]
     end
   end
 
