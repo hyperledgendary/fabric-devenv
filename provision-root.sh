@@ -63,7 +63,7 @@ usermod -aG docker vagrant
 
 # Install docker compose
 if [ ! -x /usr/local/bin/docker-compose ]; then
-  curl --fail --silent --show-error -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  curl --fail --silent --show-error -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   chmod +x /usr/local/bin/docker-compose
 fi
 
