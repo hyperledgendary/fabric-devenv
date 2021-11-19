@@ -11,9 +11,13 @@ fi
 
 THIRDPARTY_IMAGE_VERSION=0.4.15
 
-if [ ${HLF_VERSION:0:2} = '2.' ]; then
+if [ ${HLF_VERSION:0:4} = '2.3.' -o ${HLF_VERSION:0:4} = '2.4.' ]; then
   CA_VERSION=1.5.2
   SAMPLE_BRANCH=main
+  NODE_VERSION=14.18.0
+elif [ ${HLF_VERSION:0:4} = '2.0.' -o ${HLF_VERSION:0:4} = '2.1.' -o ${HLF_VERSION:0:4} = '2.2.' ]; then
+  CA_VERSION=1.5.2
+  SAMPLE_BRANCH=v${HLF_VERSION}
   NODE_VERSION=12.14.0
 else
   CA_VERSION=$HLF_VERSION
