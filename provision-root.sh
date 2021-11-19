@@ -24,9 +24,13 @@ else
 fi
 
 # APT setup for docker packages
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 apt-cache policy docker-ce
+
+# APT setup for kubectl
+curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 
 # Update package lists
 apt-get update
@@ -64,7 +68,26 @@ usermod -aG docker vagrant
 # Install docker compose
 if [ ! -x /usr/local/bin/docker-compose ]; then
   curl --fail --silent --show-error -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  chmod +x /usr/local/bin/docker-compose
+  chmod 755 /usr/local/bin/docker-compose
+fi
+
+# Install kubectl
+apt-get -y --no-upgrade install kubectl
+
+# Install kind
+KIND_VERSION=0.11.1
+if [ ! -x "/usr/local/bin/kind" ]; then
+  curl --fail --silent --show-error -L "https://kind.sigs.k8s.io/dl/v${KIND_VERSION}/kind-linux-amd64" -o /usr/local/bin/kind
+  chmod 755 /usr/local/bin/kind
+fi
+
+# Install k9s
+K9S_VERSION=0.25.3
+if [ ! -x "/usr/local/bin/k9s" ]; then
+  curl --fail --silent --show-error -L "https://github.com/derailed/k9s/releases/download/v${K9S_VERSION}/k9s_Linux_x86_64.tar.gz" -o "/tmp/k9s_Linux_x86_64.tar.gz"
+  tar -zxf "/tmp/k9s_Linux_x86_64.tar.gz" -C /usr/local/bin k9s
+  chown root:root /usr/local/bin/k9s
+  chmod 755 /usr/local/bin/k9s
 fi
 
 # Install go
