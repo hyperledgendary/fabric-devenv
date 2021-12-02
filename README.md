@@ -44,16 +44,16 @@ vagrant ssh-config
 
 To install specific versions of Fabric, set a `HLF_VERSION` environment variable before running `vagrant up`. 
 
-For example, to install the 2.4.0 Beta version of Fabric use:
+For example, to install the 2.4.0 version of Fabric use:
 
 ```
-HLF_VERSION=2.4.0-beta vagrant up
+HLF_VERSION=2.4.0 vagrant up
 ```
 
 Or on Windows:
 
 ```
-set HLF_VERSION=2.4.0-beta
+set HLF_VERSION=2.4.0
 vagrant up
 ```
 
