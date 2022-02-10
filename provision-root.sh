@@ -135,3 +135,12 @@ if [ ! -x "/usr/local/bin/protoc" ]; then
   mv /tmp/protoc-${PROTOC_VERSION}-linux-x86_64/include/* /usr/local/include/
   rm -Rf "/tmp/protoc-${PROTOC_VERSION}-linux-x86_64"
 fi
+
+# Install ccmetadata
+CCMETADATA_VERSION=0.2.0
+if [ ! -x "/usr/local/bin/ccmetadata" ]; then
+  curl --fail --silent --show-error -L "https://github.com/hyperledgendary/ccmetadata/releases/download/v${CCMETADATA_VERSION}/ccmetadata-Linux-X64.tgz" -o "/tmp/ccmetadata-Linux-X64.tgz"
+  tar -zxf "/tmp/ccmetadata-Linux-X64.tgz" -C /usr/local/bin ccmetadata
+  chown root:root /usr/local/bin/ccmetadata
+  chmod 755 /usr/local/bin/ccmetadata
+fi
