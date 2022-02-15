@@ -39,7 +39,7 @@ echo "default" > $HOME/.nvmrc
 
 # Install useful node modules
 npm ls -g yo >/dev/null 2>&1 || npm install -g yo
-npm ls -g generator-fabric >/dev/null 2>&1 || npm install -g generator-fabric
+npm ls -g generator-fabric >/dev/null 2>&1 || npm install -g generator-fabric@0.2.27
 
 # Install Hyperledger Fabric binaries and docker images
 if [ ! -d "$HOME/fabric" ]; then
