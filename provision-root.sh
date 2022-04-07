@@ -38,6 +38,13 @@ apt-get update
 # Install jq
 apt-get -y --no-upgrade install jq
 
+# Install yq
+YQ_VERSION=4.23.1
+if [ ! -x "/usr/local/bin/yq" ]; then
+  curl --fail --silent --show-error -L "https://github.com/mikefarah/yq/releases/download/v${YQ_VERSION}/yq_linux_amd64" -o /usr/local/bin/yq
+  chmod 755 /usr/local/bin/yq
+fi
+
 # Install unzip
 apt-get -y --no-upgrade install unzip
 
