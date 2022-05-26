@@ -9,7 +9,9 @@ else
   HLF_VERSION=$1
 fi
 
-if [ ${HLF_VERSION:0:4} = '2.2.' -o ${HLF_VERSION:0:4} = '2.3.' -o ${HLF_VERSION:0:4} = '2.4.' ]; then
+if [ ${HLF_VERSION:0:4} = '2.4.' ]; then
+  export GO_VERSION=1.17.10
+elif [ ${HLF_VERSION:0:4} = '2.2.' -o ${HLF_VERSION:0:4} = '2.3.' ]; then
   export GO_VERSION=1.14.11
 elif [ ${HLF_VERSION:0:4} = '2.0.' -o ${HLF_VERSION:0:4} = '2.1.' ]; then
   export GO_VERSION=1.13.15
