@@ -84,7 +84,7 @@ fi
 apt-get -y --no-upgrade install kubectl
 
 # Install kind
-KIND_VERSION=0.11.1
+KIND_VERSION=0.14.0
 if [ ! -x "/usr/local/bin/kind" ]; then
   curl --fail --silent --show-error -L "https://kind.sigs.k8s.io/dl/v${KIND_VERSION}/kind-linux-amd64" -o /usr/local/bin/kind
   chmod 755 /usr/local/bin/kind
