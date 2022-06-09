@@ -17,7 +17,7 @@ You'll need to stock your machine with all these healthy ingredients if you don'
 To configure a development environment for Hyperledger Fabric 2.2.0, run the following commands:
 
 ```
-git clone https://github.com/jt-nti/fabric-devenv.git
+git clone https://github.com/hyperledgendary/fabric-devenv.git
 cd fabric-devenv
 vagrant up
 ```
@@ -68,7 +68,7 @@ Supported `HLF_VERSION` values:
 If you want to set up several VMs with different versions, or for different purposes, you can clone the _fabric-devenv_ repository into different directories. For example,
 
 ```
-git clone https://github.com/jt-nti/fabric-devenv.git fabric-tutorial
+git clone https://github.com/hyperledgendary/fabric-devenv.git fabric-tutorial
 ```
 
 Or simply copy an existing clone. The different directory names should show up in the VirtualBox UI after running `vagrant up` if you need to update the VM settings for any of your environments.
