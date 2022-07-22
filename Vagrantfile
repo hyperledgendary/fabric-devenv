@@ -16,8 +16,8 @@ Vagrant.configure("2") do |config|
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
-  # Set up the quickstart environment on 18.04 LTS Ubuntu
-  config.vm.box = "bento/ubuntu-18.04"
+  # Set up the quickstart environment on 20.04 LTS Ubuntu
+  config.vm.box = "bento/ubuntu-20.04"
 
   # Optionally cache packages
   if Vagrant.has_plugin?("vagrant-cachier")
