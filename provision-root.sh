@@ -26,13 +26,18 @@ else
 fi
 
 # APT setup for docker packages
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-apt-cache policy docker-ce
+mkdir -p /etc/apt/keyrings
+rm -f /etc/apt/keyrings/docker.gpg
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --batch --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # APT setup for kubectl
-curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo \
+  "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ \
+  kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list > /dev/null
 
 # Update package lists
 apt-get update
@@ -69,15 +74,16 @@ apt-get -y --no-upgrade install build-essential libssl-dev
 apt-get -y --no-upgrade install apt-transport-https ca-certificates
 
 # Install docker
-apt-get -y --no-upgrade install docker-ce
+apt-get -y --no-upgrade install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 # Add user to docker group
 usermod -aG docker vagrant
 
-# Install docker compose
-if [ ! -x /usr/local/bin/docker-compose ]; then
-  curl --fail --silent --show-error -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  chmod 755 /usr/local/bin/docker-compose
+# Install compose-switch
+if [ ! -x "/usr/local/bin/compose-switch" ]; then
+  curl --fail --silent --show-error -L https://github.com/docker/compose-switch/releases/latest/download/docker-compose-linux-amd64 -o /usr/local/bin/compose-switch
+  chmod +x /usr/local/bin/compose-switch
+  update-alternatives --install /usr/local/bin/docker-compose docker-compose /usr/local/bin/compose-switch 99
 fi
 
 # Install kubectl
