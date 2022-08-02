@@ -42,6 +42,9 @@ Vagrant.configure("2") do |config|
   # your network.
   # config.vm.network "public_network"
 
+  # Disable the default /vagrant share (re-enabled below but not for Hyper-V provider)
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
@@ -50,19 +53,35 @@ Vagrant.configure("2") do |config|
 
   # VirtualBox configuration
   config.vm.provider "virtualbox" do |vb|
-    # Increase memory allocated to vm (for build tasks)
+    # Re-enable the default /vagrant share
+    config.vm.synced_folder ".", "/vagrant", disabled: false
+
+    # Increase memory allocated to vm
     vb.memory = 6192
 
     # Add disk space
     disk = File.join(File.realpath(File.expand_path(__dir__)), "fabric-devenv-disk.vmdk").to_s
     if not File.exists?(disk)
       vb.customize [ "createmedium", "disk", "--filename", disk, "--format", "vmdk", "--size", 1024 * 20 ]
-      vb.customize ["storageattach", :id,  "--storagectl", "SATA Controller", "--port", 1, "--device", 0, "--type", "hdd", "--medium", disk]
+      vb.customize [ "storageattach", :id,  "--storagectl", "SATA Controller", "--port", 1, "--device", 0, "--type", "hdd", "--medium", disk ]
     end
+
+    # Configure additional disk space
+    config.vm.provision "provision-disk", type: "shell", path: "provision-disk.sh", privileged: true
   end
 
-  # Configure additional disk space
-  config.vm.provision "provision-disk", type: "shell", path: "provision-disk.sh", privileged: true
+  # Hyper-V configuration
+  config.vm.provider "hyperv" do |h|
+    # Increase memory allocated to vm
+    h.memory = 6192
+
+    # Note: no additional disk space for Hyper-V provider
+
+    # Tricks from
+    # https://docs.microsoft.com/en-us/virtualization/community/team-blog/2017/20170706-vagrant-and-hyper-v-tips-and-tricks
+    h.enable_virtualization_extensions = true
+    h.linked_clone = true
+  end
 
   # Configure vagrant user .profile
   config.vm.provision "provision-user-profile", type: "shell", path: "provision-user-profile.sh", privileged: false
@@ -70,5 +89,4 @@ Vagrant.configure("2") do |config|
   # Install required software
   config.vm.provision "provision-root", type: "shell", path: "provision-root.sh", privileged: true, args: ENV['HLF_VERSION']
   config.vm.provision "provision-user", type: "shell", path: "provision-user.sh", privileged: false, args: ENV['HLF_VERSION']
-
 end

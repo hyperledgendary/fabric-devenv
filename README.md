@@ -8,15 +8,16 @@
 You'll need to stock your machine with all these healthy ingredients if you don't have them already:
 
 1. [VirtualBox](https://www.virtualbox.org/)
+    - alternatively there is limited support for Hyper-V on Windows
 2. [Vagrant](https://www.vagrantup.com/docs/installation/)
-    - **Note:** fabric-devenv requires Vagrant 2.0.3 or greater
+    - fabric-devenv requires Vagrant 2.0.3 or greater
 3. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## Method
 
 To configure a development environment for Hyperledger Fabric 2.2.0, run the following commands:
 
-```
+```shell
 git clone https://github.com/hyperledgendary/fabric-devenv.git
 cd fabric-devenv
 vagrant up
@@ -24,7 +25,7 @@ vagrant up
 
 When the development environment has finished cooking, log in using:
 
-```
+```shell
 vagrant ssh
 ```
 
@@ -36,23 +37,25 @@ After installing the extension, use the 'Remote-SSH: Connect to Host...' VSCode 
 
 **Note:** You'll need to pick `Configure SSH Hosts...` the first time to add a host for the development environment to your SSH configuration file. To get the required SSH configuration, run:
 
-```
+```shell
 vagrant ssh-config
 ```
 
 ## Alternative toppings
 
+### Fabric versions
+
 To install specific versions of Fabric, set a `HLF_VERSION` environment variable before running `vagrant up`. 
 
 For example, to install the 2.4.4 version of Fabric use:
 
-```
+```shell
 HLF_VERSION=2.4.4 vagrant up
 ```
 
 Or on Windows:
 
-```
+```shell
 set HLF_VERSION=2.4.4
 vagrant up
 ```
@@ -61,33 +64,48 @@ Supported `HLF_VERSION` values:
 
 - Specific `1.4`, `2.0`, `2.1`, `2.2`, `2.3`, or `2.4` version numbers
 
+### Hyper-V
+
+The development environment uses the default VirtualBox provider by default, however there is limited support for Hyper-V on Windows.
+
+Specify the Hyper-V provider using:
+
+```shell
+vagrant up --provider=hyperv
+```
+
+The following sides are **not available** when using Hyper-V:
+
+- default `/vagrant` share
+- extra 20GB disk
+
 ## Cooking tips
 
 ### Extra dishes
 
 If you want to set up several VMs with different versions, or for different purposes, you can clone the _fabric-devenv_ repository into different directories. For example,
 
-```
+```shell
 git clone https://github.com/hyperledgendary/fabric-devenv.git fabric-tutorial
 ```
 
 Or simply copy an existing clone. The different directory names should show up in the VirtualBox UI after running `vagrant up` if you need to update the VM settings for any of your environments.
 
-### Larger portions
+### Larger portions - VirtualBox only
 
 The development environment has an extra 20GB disk on top of the normal storage.
 The _opt_ and _home_ directories have 5GB each, leaving another 10GB if you run out of storage.
 
 The following commands will show disk usage and volume group information respectively:
 
-```
+```shell
 df
 sudo vgdisplay -v
 ```
 
 For example, if they show that the home directory is full and there is still enough unallocated space, you can increase the size using these commands:
 
-```
+```shell
 sudo lvextend -L +5G /dev/vagrant/home
 sudo resize2fs /dev/vagrant/home
 ```
