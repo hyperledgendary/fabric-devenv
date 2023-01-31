@@ -1,3 +1,5 @@
+**⚠️ This project is no longer maintained**
+
 # fabric-devenv
 
 [Vagrant](https://www.vagrantup.com) environment to help get started with [Hyperledger Fabric](https://hyperledger-fabric.readthedocs.io/en/latest/).
